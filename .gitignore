@@ -1,0 +1,28 @@
+# Banco vetorial (gerado pelo ingest.py)
+db/
+
+# Arquivo gerado pelo extract_pdf.py
+cbo_completo.txt
+
+# PDF original (arquivo grande, não versionar)
+*.pdf
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Ambientes virtuais
+venv/
+.venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
