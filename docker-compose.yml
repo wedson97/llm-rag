@@ -1,0 +1,30 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: llm-rag-ollama
+    volumes:
+      - ollama_models:/root/.ollama
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/11434"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  app:
+    build: .
+    container_name: llm-rag-app
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    volumes:
+      # Monta o projeto inteiro: ingest.py/chat.py leem/escrevem aqui (db/, cbo_completo.txt)
+      - .:/app
+    depends_on:
+      ollama:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+volumes:
+  ollama_models:

@@ -1,0 +1,13 @@
+.git/
+.gitignore
+db/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+*.pdf
